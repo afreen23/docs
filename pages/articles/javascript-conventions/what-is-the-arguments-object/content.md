@@ -50,3 +50,44 @@ to convert `arguments` into a true array using the Array#slice method.
 
     // cut out first argument
     args = Array.prototype.slice.call(arguments, 1);
+
+###### New wokaround with ES6: rest and spread
+
+The new ES6 rest operator(...) takes the arguments passed to a function and pack them into and array. It thus reduces the work of converting the arguments into array with #slice or using other hacks to use array methods.
+
+    myfunc = function(...args) {
+    
+     console.log(args) //[1,2,3,4,5,6] 
+     //no need to use call or apply
+     
+     //cut out first argument:[2,3,4,5,6]
+     var res1 = args.slice(1) 
+     
+     //sum of all arguments: 21
+     var res2 = args.reduce(function() {
+        return memo + value
+     })
+     
+     return res1
+     return res2
+    }
+
+    myfunc(1,2,3,4,5,6)
+
+The spread operator(...) looks same but works opposite to the rest operator. It unpacks an array into its constituent elements.
+
+    var myfunc = function(a,b,c) {
+        console.log(a) // 1
+        console.log(b) // 2
+        console.log(c) // 3
+    }
+
+    var args = [1,2,3]
+    myfunc(...args)
+
+
+
+
+
+
+
